@@ -16,7 +16,7 @@ Este projeto consiste em uma interface web para o sistema de gerenciamento de re
 1.  Clone o repositório:
 
     ```bash
-    git clone [https://github.com/Victor-Anjos/ProjetoFTT.git](https://www.google.com/search?q=https://github.com/Victor-Anjos/ProjetoFTT.git)
+    git clone https://github.com/Victor-Anjos/ProjetoFTT.git
     ```
 
 2.  Navegue até o diretório do projeto:
