@@ -43,6 +43,29 @@ const Dashboard = () => {
         loadData();
     }, []);
 
+        // Chamando API real:
+    // useEffect(() => {
+    //     const loadData = async () => {
+    //         try {
+    //             const responseBlocos = await fetch("https://minha-api.com/blocos");
+    //             const blocosData = await responseBlocos.json();
+    //             setBlocos(blocosData);
+
+    //             const responseSalas = await fetch("https://minha-api.com/salas");
+    //             const salasData = await responseSalas.json();
+    //             setSalas(salasData);
+
+    //             const responseReservas = await fetch("https://minha-api.com/reservas");
+    //             const reservasData = await responseReservas.json();
+    //             setReservas(reservasData);
+    //         } catch (error: any) {
+    //             setMensagem({ texto: error.message, tipo: "erro" });
+    //         }
+    //     };
+    //
+    //     loadData();
+    // }, []);
+
     const handleMensagemClose = () => {
         setMensagem({ texto: "", tipo: null });
     };
