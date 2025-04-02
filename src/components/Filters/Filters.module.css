@@ -1,0 +1,45 @@
+.filtersContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 30%;
+}
+
+.select {
+  min-width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.filtersContainer select,
+.filtersContainer input {
+  box-sizing: border-box;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .filtersContainer {
+    justify-content: center;
+  }
+
+  .select,
+  .input {
+    width: 100%;
+    max-width: 300px;
+  }
+}

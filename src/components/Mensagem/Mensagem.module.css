@@ -1,0 +1,16 @@
+.mensagem {
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.sucesso {
+  background-color: #c6f7c6;
+}
+
+.erro {
+  background-color: #f7c6c6;
+}

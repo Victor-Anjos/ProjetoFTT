@@ -1,0 +1,113 @@
+/* SideBar.module.css */
+.sidebar {
+  width: 270px;
+  background: linear-gradient(135deg, #0056b3, #003d73);
+  color: white;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Mantenha a posição relative para o fluxo normal da barra lateral */
+  transition: width 0.3s ease;
+  box-sizing: border-box;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.minimized {
+  width: 80px;
+  padding: 10px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  max-width: 200px;
+  max-height: 10 0px;
+}
+
+.menuItem {
+  margin-bottom: 25px;
+  text-align: center;
+  padding: 0 1%;
+}
+
+.itemHeader {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.itemHeader:hover {
+  background-color: #003d73;
+  transform: translateX(3px);
+}
+
+.toggleButton {
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #0056b3, #003d73);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.minimizedMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 20px; /* Ajuste o padding superior conforme necessário */
+  position: sticky; /* Adicionado para o efeito sticky */
+  top: 20px; /* Define a distância do topo onde os ícones vão "grudar" */
+}
+
+.minimizedItem {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.minimizedItem:hover {
+  background-color: #003d73;
+}
+
+.icon {
+  font-size: 25px;
+}
+
+.menuIcon {
+  margin-right: 10px;
+}
+
+.active {
+  background-color: #003d73;
+}

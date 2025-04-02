@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "../src/pages/Login/Login";
+import Dashboard from "../src/pages/Dashboard/Dashboard";
+import Reservas from "../src/pages/Reservas/Reservas";
+import Relatorios from "../src/pages/Relatorios/Relatorios";
+import PrivateRoute from "../src/components/PrivateRoutes/PrivateRoutes";
+import { jwtDecode } from "jwt-decode";
 
-function App() {
+const AppRoutes = () => {
+  const token = localStorage.getItem("token");
+  let isAuthenticated = false;
+
+  if (token) {
+    try {
+      const decodedToken: any = jwtDecode(token);
+      if (decodedToken.exp * 1000 > Date.now()) {
+        isAuthenticated = true;
+      } else {
+        localStorage.removeItem("token");
+      }
+    } catch (error) {
+      localStorage.removeItem("token");
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute element={<Dashboard />} />}
+        />
+        <Route
+          path="/reservas"
+          element={<PrivateRoute element={<Reservas />} />}
+        />
+        <Route
+          path="/relatorios"
+          element={<PrivateRoute element={<Relatorios />} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
-export default App;
+export default AppRoutes;
