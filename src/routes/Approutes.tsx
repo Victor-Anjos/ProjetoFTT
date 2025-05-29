@@ -3,6 +3,7 @@ import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Reservas from "../pages/Reservas/Reservas";
 import Relatorios from "../pages/Relatorios/Relatorios";
+import Cadastro from "../pages/Cadastro/Cadastro";
 import PrivateRoute from "../components/PrivateRoutes/PrivateRoutes";
 import { jwtDecode } from "jwt-decode";
 
@@ -23,6 +24,7 @@ const AppRoutes = () => {
           sessionStorage.removeItem("token");
         }
       } catch (error) {
+        console.error("Erro ao decodificar token JWT:", error);
         localStorage.removeItem("token");
         sessionStorage.removeItem("token");
       }
@@ -34,9 +36,12 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} /> 
+
         <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
         <Route path="/reservas" element={<PrivateRoute element={<Reservas />} />} />
         <Route path="/relatorios" element={<PrivateRoute element={<Relatorios />} />} />
+
       </Routes>
     </BrowserRouter>
   );

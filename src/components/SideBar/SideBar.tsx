@@ -1,22 +1,49 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./SideBar.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleRight, faHouse, faChartBar, faCalendarAlt, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleRight,
+  faHouse,
+  faChartBar,
+  faCalendarAlt,
+  faCircleLeft,
+  faRightFromBracket,
+  // Não precisamos mais importar faExclamationTriangle aqui, pois LogoutModal o importa
+} from '@fortawesome/free-solid-svg-icons';
 import Logo from '../../assets/logoUniEvangelica.png';
 import Tooltip from '../Tooltip/Tooltip';
+import LogoutModal from '../Modal/LogoutModal'; // Importe o LogoutModal
 
 const SideBar: React.FC = () => {
   const [isMinimized, setIsMinimized] = useState(() => {
     const storedMinimized = localStorage.getItem('sidebarMinimized');
     return storedMinimized ? JSON.parse(storedMinimized) : false;
   });
-  const [showToggleButton, setShowToggleButton] = useState(true); // Novo estado para controlar a visibilidade do botão
+  const [showToggleButton, setShowToggleButton] = useState(true);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     const newMinimized = !isMinimized;
     setIsMinimized(newMinimized);
     localStorage.setItem('sidebarMinimized', JSON.stringify(newMinimized));
+  };
+
+  const handleOpenLogoutModal = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setIsLogoutModalOpen(true);
+  };
+
+  const handleCloseLogoutModal = () => {
+    setIsLogoutModalOpen(false);
+  };
+
+  const handleConfirmLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+    setIsLogoutModalOpen(false);
   };
 
   useEffect(() => {
@@ -42,8 +69,6 @@ const SideBar: React.FC = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  const location = useLocation();
 
   return (
     <div className={`${styles.sidebar} ${isMinimized ? styles.minimized : ""}`}>
@@ -81,6 +106,13 @@ const SideBar: React.FC = () => {
               Reservas
             </Link>
           </div>
+
+          <div className={styles.menuItem}>
+            <a href="#" onClick={handleOpenLogoutModal} className={styles.itemHeader}>
+              <FontAwesomeIcon icon={faRightFromBracket} className={styles.menuIcon} />
+              Logout
+            </a>
+          </div>
         </>
       )}
 
@@ -101,8 +133,21 @@ const SideBar: React.FC = () => {
               <FontAwesomeIcon icon={faCalendarAlt} className={styles.icon} />
             </Link>
           </Tooltip>
+
+          <Tooltip text="Logout">
+            <a href="#" onClick={handleOpenLogoutModal} className={styles.minimizedItem}>
+              <FontAwesomeIcon icon={faRightFromBracket} className={styles.icon} />
+            </a>
+          </Tooltip>
         </div>
       )}
+
+      {/* AGORA USAMOS O LogoutModal DIRETAMENTE */}
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={handleCloseLogoutModal}
+        onConfirm={handleConfirmLogout}
+      />
     </div>
   );
 };

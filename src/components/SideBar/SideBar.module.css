@@ -1,4 +1,3 @@
-/* SideBar.module.css */
 .sidebar {
   width: 270px;
   background: linear-gradient(135deg, #0056b3, #003d73);
@@ -7,7 +6,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  position: relative; /* Mantenha a posição relative para o fluxo normal da barra lateral */
+  position: relative;
   transition: width 0.3s ease;
   box-sizing: border-box;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
@@ -25,7 +24,7 @@
 
 .logo img {
   max-width: 200px;
-  max-height: 10 0px;
+  max-height: 100px;
 }
 
 .menuItem {
@@ -79,9 +78,9 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: 20px; /* Ajuste o padding superior conforme necessário */
-  position: sticky; /* Adicionado para o efeito sticky */
-  top: 20px; /* Define a distância do topo onde os ícones vão "grudar" */
+  padding-top: 20px;
+  position: sticky;
+  top: 20px;
 }
 
 .minimizedItem {

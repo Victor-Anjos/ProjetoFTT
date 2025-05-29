@@ -69,7 +69,6 @@ const ReservaForm: React.FC<ReservaFormProps> = ({
 
             <div className={styles.reservas_button_group}>
                 <button type="submit" className={`${styles.reservas_button} ${styles.reservas_button_submit}`} data-testid="criar-reserva-button">Criar Reserva</button >
-                <button type="button" className={`${styles.reservas_button} ${styles.reservas_button_reset}`} onClick={handleReset}>Limpar Campos</button>
             </div>
         </form>
     );

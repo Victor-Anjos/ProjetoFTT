@@ -63,15 +63,6 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange, blocos }) => {
         onChange={handleChange}
         className={styles.input}
       />
-
-      <input
-        type="text"
-        name="recursos"
-        placeholder="Recursos disponíveis"
-        value={filters.recursos}
-        onChange={handleChange}
-        className={styles.input}
-      />
     </div>
   );
 };

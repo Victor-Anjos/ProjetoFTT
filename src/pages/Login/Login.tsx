@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Importe 'Link' aqui
 import styles from "./Login.module.css";
 import Logo from "../../assets/logoUniEvangelica.png";
 import Loading from "../../components/Loading/Loading";
@@ -11,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (error) {
-      const timer = setTimeout(() => setError(""), 5000);
+      const timer = setTimeout(() => setError(""), 35000);
       return () => clearTimeout(timer);
     }
   }, [error, setError]);
@@ -28,7 +28,7 @@ const Login = () => {
           <div className={styles.loginCard__form}>
             <h2 className={styles.loginCard__title}>Login</h2>
             <div className={styles.inputGroup}>
-              <label htmlFor="email" className={styles.inputGroup__label}>E-mail</label>
+              <label htmlFor="email" className={styles.inputGroup__label}>E-mail:</label>
               <input
                 type="email"
                 id="email"
@@ -40,7 +40,7 @@ const Login = () => {
               />
             </div>
             <div className={styles.inputGroup}>
-              <label htmlFor="password" className={styles.inputGroup__label}>Senha</label>
+              <label htmlFor="password" className={styles.inputGroup__label}>Senha:</label>
               <input
                 type="password"
                 id="password"
@@ -51,10 +51,20 @@ const Login = () => {
                 data-testid="login-password"
               />
             </div>
-            {error && <p className={styles.errorMessage} data-testid="login-error-message">{error}</p>}
+            {/* Mensagem de erro com visibilidade controlada */}
+            <p className={`${styles.errorMessage} ${!error ? styles.hidden : ''}`} data-testid="login-error-message">
+              {error}
+            </p>
             <button className={styles.button} onClick={login} data-testid="login-button">
               Entrar
             </button>
+            {/* Link para cadastro */}
+            <p className={styles.registerText}>
+              Não tem cadastro?{" "}
+              <Link to="/cadastro" className={styles.registerLink}>
+                Cadastre-se aqui
+              </Link>
+            </p>
           </div>
         </div>
       )}

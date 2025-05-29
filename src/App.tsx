@@ -6,8 +6,9 @@ import Reservas from "../src/pages/Reservas/Reservas";
 import Relatorios from "../src/pages/Relatorios/Relatorios";
 import PrivateRoute from "../src/components/PrivateRoutes/PrivateRoutes";
 import { jwtDecode } from "jwt-decode";
+import Cadastro from "./pages/Cadastro/Cadastro";
 
-const AppRoutes = () => {
+const App = () => {
   const token = localStorage.getItem("token");
   let isAuthenticated = false;
 
@@ -32,6 +33,9 @@ const AppRoutes = () => {
           element={isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />}
         />
         <Route path="/login" element={<Login />} />
+
+          <Route path="/cadastro" element={<Cadastro />} />
+
         <Route
           path="/dashboard"
           element={<PrivateRoute element={<Dashboard />} />}
@@ -49,4 +53,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+export default App;
